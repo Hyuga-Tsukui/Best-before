@@ -25,6 +25,10 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+# Authentication definition
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "foods:index"
+LOGOUT_REDIRECT_URL = "login"
 
 # Application definition
 
@@ -36,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     #My Apps
+    "accounts.apps.AccountsConfig",
     "foods.apps.FoodsConfig",
     # 3rd paty
     "rest_framework",
@@ -57,7 +62,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [Path.joinpath(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

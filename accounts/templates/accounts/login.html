@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{$ load sass_tags %}
+{% block title %}{{ block.super }} ログイン{% endblock %}
+{% block content %}
+    <div class="form-box">
+        <form class="col s12" action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn" type="submit">ログイン
+                <i class="material-icons right">check</i>
+            </button>
+        </form>
+    </div>
+{% endblock %}
