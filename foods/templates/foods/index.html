@@ -1,0 +1,19 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %}{{ block.super }} 一覧{% endblock %}
+{% block content %}
+<div class="container">
+  <ul class="collection">
+    {% for food in food_list %}
+      <li class="collection-item">
+       <p>{{ food.name }} </p>
+       <p>賞味期限： {{ food.best_before }}<a href="{% url 'foods:delete' food.id %}" class="secondary-content"><i class="material-icons">delete</i></a></p>
+      </li>
+    {% endfor %}
+  </ul>
+  <a class="btn-floating btn-large waves-effect waves-light red" href="{% url 'foods:create' %}"><i class="material-icons">add</i></a>
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

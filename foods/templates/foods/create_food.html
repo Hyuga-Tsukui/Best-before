@@ -1,0 +1,15 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %}{{ block.super }} 登録{% endblock %}
+{% block content %}
+<div class="container">
+  <form action="{% url 'foods:create' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">登録</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
