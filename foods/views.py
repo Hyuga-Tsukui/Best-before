@@ -13,7 +13,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
     template_name = "foods/index.html"
 
     def get_queryset(self):
-        return  Food.objects.order_by('best_before')
+        return  Food.objects.filter(user=self.request.user).order_by('best_before')
 
 class CreateFoodView(LoginRequiredMixin, generic.CreateView):
     template_name = "foods/create_food.html"
