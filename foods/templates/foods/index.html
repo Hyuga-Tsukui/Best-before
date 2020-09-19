@@ -5,7 +5,11 @@
 <div class="container">
   <ul class="collection">
     {% for food in food_list %}
-      <li class="collection-item">
+      {% if food.is_dead_line %}
+        <li class="collection-item red lighten-3">
+      {% else %}
+        <li class="collection-item">
+      {% endif %}
        <p>{{ food.name }} </p>
        <p>賞味期限： {{ food.best_before }}<a href="{% url 'foods:delete' food.id %}" class="secondary-content"><i class="material-icons">delete</i></a></p>
       </li>
