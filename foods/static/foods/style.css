@@ -3,3 +3,25 @@ a.fixed_btn {
   bottom: 10px;
   right: 10px;
 }
+
+div.menu {
+  position: sticky;
+  bottom: 0;
+}
+
+div.menu ul {
+  display: flex;
+  border: solid 0.5px lightgrey;
+}
+
+div.menu li {
+  display: inline-block;
+  flex-grow: 1;
+  text-align: center;
+  padding: 10px 5px;
+  background-color: #64b5f6;
+}
+
+div.menu li a {
+  color: white;
+}
