@@ -21,5 +21,5 @@ class Food(TimeStamp):
         return self.name + self.best_before.strftime('%Y/%m/%d')
 
     def is_dead_line(self):
-        dead_line = timezone.now() + datetime.timedelta(days=4)
+        dead_line = timezone.now() + datetime.timedelta(days=3)
         return dead_line.date() >= self.best_before
