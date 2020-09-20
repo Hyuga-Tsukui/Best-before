@@ -11,7 +11,6 @@ div.menu {
 
 div.menu ul {
   display: flex;
-  border: solid 0.5px lightgrey;
 }
 
 div.menu li {
