@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block css %} <link rel="stylesheet" href="{% static 'foods/style.css' %}"> {% endblock %}
 {% block title %}{{ block.super }} 一覧{% endblock %}
 {% block content %}
 <div class="container">
@@ -15,7 +16,7 @@
       </li>
     {% endfor %}
   </ul>
-  <a class="btn-floating btn-large waves-effect waves-light red" href="{% url 'foods:create' %}"><i class="material-icons">add</i></a>
+  <a class="btn-floating btn-large waves-effect waves-light red fixed_btn" href="{% url 'foods:create' %}"><i class="material-icons">add</i></a>
 </div>
 {% endblock %}
 
