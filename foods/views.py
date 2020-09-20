@@ -1,9 +1,11 @@
+import datetime
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 from .models import Food
 from .forms import FoodForm
 # Create your views here.
@@ -14,6 +16,13 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return  Food.objects.filter(user=self.request.user).order_by('best_before')
+
+class DeadLineListView(LoginRequiredMixin, generic.ListView):
+    template_name = "foods/dead_line_list.html"
+
+    def get_queryset(self):
+        dead_line = timezone.now() + datetime.timedelta(days=3)
+        return  Food.objects.filter(user=self.request.user).filter(best_before__lt=dead_line.date()).order_by('best_before')
 
 class CreateFoodView(LoginRequiredMixin, generic.CreateView):
     template_name = "foods/create_food.html"
