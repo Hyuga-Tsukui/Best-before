@@ -41,4 +41,7 @@ def delete_food(request, food_id):
     food = Food.objects.get(pk=food_id)
     food.delete()
 
-    return HttpResponseRedirect(reverse("foods:index"))
+    if request.META['HTTP_REFERER'].endswith(reverse('foods:index')):
+        return HttpResponseRedirect(reverse("foods:index"))
+    else:
+        return HttpResponseRedirect(reverse("foods:dead_line_list"))
