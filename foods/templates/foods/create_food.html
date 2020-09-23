@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block css %} <link rel="stylesheet" href="{% static 'foods/style.css' %}"> {% endblock %}
 {% block title %}{{ block.super }} 登録{% endblock %}
 {% block content %}
 <div class="container">
@@ -9,6 +10,10 @@
     <button class="btn" type="submit">登録</button>
   </form>
 </div>
+{% endblock %}
+
+{% block footer %}
+ {% include 'foods/menu.html' %}
 {% endblock %}
 
 {% block script %}
