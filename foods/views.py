@@ -1,7 +1,6 @@
 import datetime
-from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -41,7 +40,4 @@ def delete_food(request, food_id):
     food = Food.objects.get(pk=food_id)
     food.delete()
 
-    if request.META['HTTP_REFERER'].endswith(reverse('foods:index')):
-        return HttpResponseRedirect(reverse("foods:index"))
-    else:
-        return HttpResponseRedirect(reverse("foods:dead_line_list"))
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
