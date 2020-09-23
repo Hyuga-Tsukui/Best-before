@@ -17,7 +17,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 
 
 class DeadLineListView(LoginRequiredMixin, generic.ListView):
-    template_name = "foods/dead_line_list.html"
+    template_name = "foods/index.html"
 
     def get_queryset(self):
         dead_line = timezone.now() + datetime.timedelta(days=3)
@@ -25,7 +25,7 @@ class DeadLineListView(LoginRequiredMixin, generic.ListView):
 
 
 class NoDeadLineListView(LoginRequiredMixin, generic.ListView):
-    template_name = "foods/no_dead_line_list.html"
+    template_name = "foods/index.html"
 
     def get_queryset(self):
         dead_line = timezone.now() + datetime.timedelta(days=3)
