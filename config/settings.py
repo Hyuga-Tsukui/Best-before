@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    #My Apps
+    # My Apps
     "accounts.apps.AccountsConfig",
     "foods.apps.FoodsConfig",
+    "api.apps.ApiConfig",
     # 3rd paty
     "rest_framework",
 ]

@@ -3,7 +3,7 @@
 {% block css %} <link rel="stylesheet" href="{% static 'foods/style.css' %}"> {% endblock %}
 {% block title %}{{ block.super }} 一覧{% endblock %}
 {% block content %}
-<div class="container">
+<div class="container" id='app'>
   <ul class="collection">
     {% for food in food_list %}
       {% if food.is_dead_line %}
@@ -25,4 +25,30 @@
 {% endblock %}
 
 {% block script %}
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      delimiters: ['[[', ']]'],
+      data: {
+        foods: []
+      },
+      mounted: function() {
+        this.fetchFoodList();
+      },
+      methods: {
+        fetchFoodList() {
+          fetch(`{% url 'api:foods' %}`, {
+            method: 'GET',
+            credentials: 'same-origin'
+          })
+          .then((response) => {
+            return response.json();
+          })
+          .then((json) => {
+            this.foods = json;
+          })
+        }
+      }
+    })
+  </script>
 {% endblock %}
