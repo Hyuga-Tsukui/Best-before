@@ -24,6 +24,14 @@ class DeadLineListView(LoginRequiredMixin, generic.ListView):
         return Food.objects.filter(user=self.request.user).filter(best_before__lte=dead_line.date()).order_by('best_before')
 
 
+class NoDeadLineListView(LoginRequiredMixin, generic.ListView):
+    template_name = "foods/no_dead_line_list.html"
+
+    def get_queryset(self):
+        dead_line = timezone.now() + datetime.timedelta(days=3)
+        return Food.objects.filter(user=self.request.user).filter(best_before__gt=dead_line.date()).order_by('best_before')
+
+
 class CreateFoodView(LoginRequiredMixin, generic.CreateView):
     template_name = "foods/create_food.html"
     form_class = FoodForm
