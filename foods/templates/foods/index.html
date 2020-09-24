@@ -4,17 +4,11 @@
 {% block title %}{{ block.super }} 一覧{% endblock %}
 {% block content %}
 <div class="container" id='app'>
-  <ul class="collection">
-    {% for food in food_list %}
-      {% if food.is_dead_line %}
-        <li class="collection-item red lighten-3">
-      {% else %}
-        <li class="collection-item">
-      {% endif %}
-       <p>{{ food.name }} </p>
-       <p>賞味期限： {{ food.best_before }}<a href="{% url 'foods:delete' food.id %}" class="secondary-content"><i class="material-icons">delete</i></a></p>
+  <ul class="collection" v-for='food in foods'>
+    <li class="collection-item" v-bind:class="{red : food.is_dead_line, 'lighten-3' : food.is_dead_line}">
+        <p>[[ food.name ]]</p>
+        <p>賞味期限： [[ food.best_before ]]<a href="!#" class="secondary-content"><i class="material-icons">delete</i></a></p>
       </li>
-    {% endfor %}
   </ul>
   <a class="btn-floating btn-large waves-effect waves-light red fixed_btn" href="{% url 'foods:create' %}"><i class="material-icons">add</i></a>
 </div>
