@@ -7,7 +7,7 @@
   <ul class="collection" v-for='food in foods'>
     <li class="collection-item" v-bind:class="{red : food.is_dead_line, 'lighten-3' : food.is_dead_line}">
         <p>[[ food.name ]]</p>
-        <p>賞味期限： [[ food.best_before ]]<a href="!#" class="secondary-content"><i class="material-icons">delete</i></a></p>
+        <p>賞味期限： [[ food.best_before ]]<a :href="food.location" class="secondary-content"><i class="material-icons">delete</i></a></p>
       </li>
   </ul>
   <a class="btn-floating btn-large waves-effect waves-light red fixed_btn" href="{% url 'foods:create' %}"><i class="material-icons">add</i></a>

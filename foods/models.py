@@ -2,6 +2,7 @@ import datetime
 from django.utils import timezone
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 
 class TimeStamp(models.Model):
@@ -28,3 +29,7 @@ class Food(TimeStamp):
     @property
     def dead_line(self):
         return self.is_dead_line
+
+    @property
+    def location(self):
+        return reverse('foods:delete', args=(self.id,))
