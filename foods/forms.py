@@ -11,6 +11,7 @@ class FoodForm(forms.ModelForm):
         fields = [
             'name',
             'best_before',
+            'memo',
         ]
         widgets = {
             'best_before':DateInput(),
