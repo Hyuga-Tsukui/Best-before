@@ -18,7 +18,7 @@ class Food(TimeStamp):
                              on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     best_before = models.DateField()
-    memo = models.TextField(max_length=120,null=True)
+    note = models.TextField(blank=True, max_length=300)
 
     def __str__(self):
         return self.name + self.best_before.strftime('%Y/%m/%d')
