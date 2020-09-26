@@ -2,8 +2,6 @@ from django import forms
 
 from .models import Food
 
-class DateInput(forms.DateInput):
-    input_type = 'date'
 
 class FoodForm(forms.ModelForm):
     class Meta:
@@ -13,6 +11,3 @@ class FoodForm(forms.ModelForm):
             'best_before',
             'note',
         ]
-        widgets = {
-            'best_before':DateInput(),
-        }

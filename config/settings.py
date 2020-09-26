@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "api.apps.ApiConfig",
     # 3rd paty
     "rest_framework",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [
