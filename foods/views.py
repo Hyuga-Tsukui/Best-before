@@ -5,6 +5,8 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.views import View
+from django.shortcuts import render, redirect
 from .models import Food
 from .forms import FoodForm
 
@@ -16,12 +18,16 @@ class IndexView(LoginRequiredMixin, generic.ListView):
         return Food.objects.filter(user=self.request.user).order_by('best_before')
 
 
+
+
 class DeadLineListView(LoginRequiredMixin, generic.ListView):
     template_name = "foods/index.html"
 
     def get_queryset(self):
         dead_line = timezone.now() + datetime.timedelta(days=3)
         return Food.objects.filter(user=self.request.user).filter(best_before__lte=dead_line.date()).order_by('best_before')
+
+
 
 
 class NoDeadLineListView(LoginRequiredMixin, generic.ListView):
@@ -32,15 +38,25 @@ class NoDeadLineListView(LoginRequiredMixin, generic.ListView):
         return Food.objects.filter(user=self.request.user).filter(best_before__gt=dead_line.date()).order_by('best_before')
 
 
-class CreateFoodView(LoginRequiredMixin, generic.CreateView):
-    template_name = "foods/create_food.html"
-    form_class = FoodForm
-    model = Food
-    success_url = reverse_lazy('foods:index')
 
-    def form_valid(self, form):
-        form.instance.user_id = self.request.user.id
-        return super(CreateFoodView, self).form_valid(form)
+
+class CreateFoodView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        context = {
+            'form': FoodForm(),
+        }
+        return render(request, 'foods/create_food.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = FoodForm(request.POST)
+        if form.is_valid():
+            food = form.save(commit=False)
+            food.user = request.user
+            food.save()
+            return redirect(reverse_lazy('foods:index'))
+        return render(request, 'foods/create_food.html', {'form':form})
+
+
 
 
 @login_required
