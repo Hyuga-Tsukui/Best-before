@@ -27,6 +27,10 @@ class Food(TimeStamp):
         dead_line = timezone.now() + datetime.timedelta(days=3)
         return dead_line.date() >= self.best_before
 
+    def is_expiration(self):
+        today = timezone.now()
+        return today.date() >= self.best_before
+
     @property
     def dead_line(self):
         return self.is_dead_line
