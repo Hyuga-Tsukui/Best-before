@@ -36,11 +36,12 @@
                   monthsShort:['1','2','3','4','5','6','7','8','9','10','11','12'],
                   weekdaysShort:['日','月','火','水','木','金','土'],
                   weekdaysAbbrev:['日','月','火','水','木','金','土']
-                 }  
+                 }
       var options = {
         autoClose: true,
         format: "yyyy-mm-dd",
-        i18n: i18n
+        i18n: i18n,
+        showMonthAfterYear: true,
       }
       var instances = M.Datepicker.init(elems, options);
     });
