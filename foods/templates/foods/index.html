@@ -4,7 +4,7 @@
 <div class="container">
   <ul class="collection">
     {% for food in food_list %} {% if food.is_expiration %}
-    <li class="collection-item grey darken-1">{% elif food.is_dead_line %}</li>
+    <li class="collection-item grey lighten-2">{% elif food.is_dead_line %}</li>
 
     <li class="collection-item red lighten-3">{% else %}</li>
 
