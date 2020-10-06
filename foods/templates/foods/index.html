@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{% static 'foods/style.css' %}" /> {% endblock %}
 {% block title %}{{ block.super }} 一覧{% endblock %} {% block content %}
 <div class="container">
-  <ul class="collection">
+  <ul class="collection food-list">
     {% for food in food_list %} {% if food.is_expiration %}
     <li class="collection-item grey lighten-2">{% elif food.is_dead_line %}</li>
 

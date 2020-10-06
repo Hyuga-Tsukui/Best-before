@@ -31,3 +31,7 @@ div.menu li a {
 form.create-food-form {
   margin-top: 25%;
 }
+
+ul.food-list li {
+  border-color: darkgrey !important;
+}
